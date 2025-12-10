@@ -16,7 +16,7 @@ public interface SimulationMessageRepository extends JpaRepository<SimulationMes
     /**
      * 특정 시뮬레이션 ID의 모든 메시지를 시간순으로 조회
      */
-    List<SimulationMessage> findBySimulationSimulationIdOrderByTimestampAsc(Long simulationId);
+    List<SimulationMessage> findBySimulation_SimulationIdOrderByTimestampAsc(Long simulationId);
 
     /**
      * 특정 시뮬레이션의 메시지 수 조회
