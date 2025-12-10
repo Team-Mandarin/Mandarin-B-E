@@ -46,7 +46,7 @@ public class Simulation {
     private SimulationCategory category; // 10가지 ENUM 카테고리
     
     @Column(name = "time", nullable = false)
-    private LocalDateTime time; // 생성 시간 or 실행 시간
+    private LocalDateTime time; // 생성 시간
 
     @Column(name = "last_update_time", nullable = false)
     private LocalDateTime lastUpdateTime; // 마지막 수정 시간
@@ -60,25 +60,17 @@ public class Simulation {
     @Column(name = "character_persona", columnDefinition = "LONGTEXT", nullable = false)
     private String characterPersona; // 캐릭터 페르소나
 
-    @Column(name = "last_update_time")
-    private LocalDateTime lastUpdateTime;
-
     @Column(name = "init_user_mood", length = 100)
     private String initUserMood;
+
     /**
      * 기본값 세팅
      */
     @PrePersist
     protected void onCreate() {
         LocalDateTime now = LocalDateTime.now();
-        if (this.time == null) {
-            this.time = now;
-        }
-        if (this.lastUpdateTime == null) {
-            this.lastUpdateTime = now;
-        }
-        if (this.isFinished == null) {
-            this.isFinished = false;
-        }
+        if (this.time == null) this.time = now;
+        if (this.lastUpdateTime == null) this.lastUpdateTime = now;
+        if (this.isFinished == null) this.isFinished = false;
     }
 }
