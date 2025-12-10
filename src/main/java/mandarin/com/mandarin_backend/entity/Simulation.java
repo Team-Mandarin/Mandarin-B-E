@@ -28,6 +28,9 @@ public class Simulation {
     @Column(name = "end_time")
     private LocalDateTime endTime;
 
+    @Column(name = "last_update_time")
+    private LocalDateTime lastUpdateTime;
+
     @Column(name = "init_user_mood", length = 100)
     private String initUserMood;
 }

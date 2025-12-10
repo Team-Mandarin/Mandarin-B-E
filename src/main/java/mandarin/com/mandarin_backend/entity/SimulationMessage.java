@@ -35,4 +35,11 @@ public class SimulationMessage {
 
     @Column(name = "timestamp", nullable = false)
     private LocalDateTime timestamp;
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.timestamp == null) {
+            this.timestamp = LocalDateTime.now();
+        }
+    }
 }
