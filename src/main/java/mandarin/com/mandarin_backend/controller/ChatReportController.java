@@ -1,6 +1,7 @@
 package mandarin.com.mandarin_backend.controller;
 
 import lombok.RequiredArgsConstructor;
+import mandarin.com.mandarin_backend.dto.ChatReportCreateRequestDto;
 import mandarin.com.mandarin_backend.dto.ChatReportResponseDto;
 import mandarin.com.mandarin_backend.service.ChatReportService;
 import org.springframework.http.ResponseEntity;
@@ -69,6 +70,22 @@ public class ChatReportController {
             error.put("code", 400);
             error.put("message", e.getMessage());
             return ResponseEntity.badRequest().body(error);
+        }
+    }
+
+    // 4. 리포트 생성
+    @PostMapping("/create")
+    public ResponseEntity<Map<String, Object>> createReport(@RequestBody ChatReportCreateRequestDto request) {
+        Map<String, Object> res = new HashMap<>();
+
+        try {
+            chatReportService.createChatReport(request);
+            res.put("code", 200);
+            return ResponseEntity.ok(res);
+        } catch (Exception e) {
+            res.put("code", 400);
+            res.put("message", e.getMessage());
+            return ResponseEntity.badRequest().body(res);
         }
     }
 }
